@@ -6,8 +6,13 @@ let cardContainer = document.querySelector(".cards");
 btn.addEventListener("click", async ()=>{
     let userFood = inputValue.value;
     let userData = await fetchApi(userFood);
-    console.log(userData);
-    addFood(userData)
+    if(!userData){
+        let newEl2 = document.createElement("h2");
+        newEl2.innerText = "No results found";
+        cardContainer.appendChild(newEl2);
+        return;
+    }
+    addFood(userData);
 });
 
 function addFood(foodsName){
